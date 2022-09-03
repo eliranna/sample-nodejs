@@ -1,23 +1,10 @@
-const express = require('express')
-const app = express()
-const port = process.env.PORT || 3000
+var express = require("express");
+var app = express();
 
-var LoremIpsum = require('lorem-ipsum').LoremIpsum;
+app.get("/register", (req, res, next) => {
+  res.json(["Tony","Lisa","Michael","Ginger","Food"]);
+ });
 
-var lorem = new LoremIpsum({
-  sentencesPerParagraph: {
-    max: 8,
-    min: 4
-  },
-  wordsPerSentence: {
-    max: 16,
-    min: 4
-  }
+app.listen(3000, () => {
+ console.log("Server running on port 3000");
 });
-
-app.get('/', (req, res) => res.send(lorem.generateParagraphs(7)))
-app.get('/register', (req, res) => res.json({
-  token: 123
-}))
-
-app.listen(port, () => console.log(`Example app listening on port ${port}!`))
